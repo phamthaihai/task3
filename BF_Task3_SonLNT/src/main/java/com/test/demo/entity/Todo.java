@@ -10,6 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import org.hibernate.annotations.Nationalized;
+
 @Entity
 @Table(name = "todo_tasks")
 public class Todo {
@@ -21,6 +23,7 @@ public class Todo {
 	@Column(nullable = false, length = 320)
 	private String userEmail;
 
+	@Nationalized
 	@Column(nullable = false, length = 200)
 	private String title;
 
