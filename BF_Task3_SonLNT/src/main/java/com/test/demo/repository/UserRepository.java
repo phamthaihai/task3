@@ -1,8 +1,10 @@
-package com.test.demo;
+package com.test.demo.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.test.demo.entity.Users;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
 

@@ -1,8 +1,9 @@
-package com.test.demo;
+package com.test.demo.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 
 /** A user's profile photo, kept apart from {@link Users} so the image bytes are only loaded when served. */
@@ -13,7 +14,8 @@ public class UserPhoto {
 	@Id
 	private Long userId;
 
-	@Column(nullable = false, columnDefinition = "LONGBLOB")
+	@Lob
+	@Column(nullable = false)
 	private byte[] data;
 
 	@Column(nullable = false, length = 50)

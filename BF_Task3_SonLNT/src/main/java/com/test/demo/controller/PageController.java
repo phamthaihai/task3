@@ -1,9 +1,12 @@
-package com.test.demo;
+package com.test.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
+
+import com.test.demo.entity.Users;
+import com.test.demo.interceptor.CurrentUserInterceptor;
 
 @Controller
 public class PageController {

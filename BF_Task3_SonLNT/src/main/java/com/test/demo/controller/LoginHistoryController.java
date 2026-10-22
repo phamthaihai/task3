@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.controller;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -9,10 +9,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 
+import com.test.demo.entity.LoginHistory;
+import com.test.demo.entity.Users;
+import com.test.demo.interceptor.CurrentUserInterceptor;
+import com.test.demo.repository.LoginHistoryRepository;
+import com.test.demo.util.ExcelExport;
+
 @Controller
 public class LoginHistoryController {
 
-	static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 	private final LoginHistoryRepository loginHistoryRepository;
 

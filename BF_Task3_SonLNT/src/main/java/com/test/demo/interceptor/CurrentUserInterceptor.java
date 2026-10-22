@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.interceptor;
 
 import java.util.Optional;
 
@@ -9,6 +9,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.test.demo.controller.AuthController;
+import com.test.demo.entity.Users;
+import com.test.demo.service.UserService;
+
 /**
  * Guards signed-in pages: redirects to the login page when there is no valid session user, otherwise exposes
  * the user as the {@value #CURRENT_USER} request attribute.
@@ -16,7 +20,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 @Component
 public class CurrentUserInterceptor implements HandlerInterceptor {
 
-	static final String CURRENT_USER = "currentUser";
+	public static final String CURRENT_USER = "currentUser";
 
 	private final UserService userService;
 

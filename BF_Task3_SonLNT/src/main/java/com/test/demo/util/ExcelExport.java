@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 /** Builds single-sheet .xlsx downloads with a bold header row. */
-final class ExcelExport {
+public final class ExcelExport {
 
 	private static final MediaType XLSX =
 			MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
@@ -24,7 +24,7 @@ final class ExcelExport {
 	private ExcelExport() {
 	}
 
-	static ResponseEntity<byte[]> download(String filename, String sheetName, List<String> headers,
+	public static ResponseEntity<byte[]> download(String filename, String sheetName, List<String> headers,
 			List<List<String>> rows) {
 		try (XSSFWorkbook workbook = new XSSFWorkbook(); ByteArrayOutputStream out = new ByteArrayOutputStream()) {
 			Sheet sheet = workbook.createSheet(sheetName);

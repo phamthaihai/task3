@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.controller;
 
 import java.io.IOException;
 import java.util.Set;
@@ -19,6 +19,13 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.test.demo.dto.ChangePasswordForm;
+import com.test.demo.entity.UserPhoto;
+import com.test.demo.entity.Users;
+import com.test.demo.interceptor.CurrentUserInterceptor;
+import com.test.demo.repository.UserPhotoRepository;
+import com.test.demo.service.UserService;
 
 @Controller
 public class ProfileController {

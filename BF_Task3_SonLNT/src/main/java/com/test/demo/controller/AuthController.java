@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.controller;
 
 import java.util.Optional;
 
@@ -14,10 +14,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.test.demo.dto.LoginForm;
+import com.test.demo.dto.SignupForm;
+import com.test.demo.entity.Users;
+import com.test.demo.exception.DuplicateEmailException;
+import com.test.demo.service.UserService;
+
 @Controller
 public class AuthController {
 
-	static final String SESSION_USER_ID = "userId";
+	public static final String SESSION_USER_ID = "userId";
 
 	private final UserService userService;
 

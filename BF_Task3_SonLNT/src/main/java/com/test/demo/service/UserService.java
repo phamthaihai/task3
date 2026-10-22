@@ -1,4 +1,4 @@
-package com.test.demo;
+package com.test.demo.service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -6,6 +6,12 @@ import java.util.Optional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.test.demo.entity.LoginHistory;
+import com.test.demo.entity.Users;
+import com.test.demo.exception.DuplicateEmailException;
+import com.test.demo.repository.LoginHistoryRepository;
+import com.test.demo.repository.UserRepository;
 
 @Service
 public class UserService {
