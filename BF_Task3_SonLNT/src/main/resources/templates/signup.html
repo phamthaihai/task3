@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Create your account · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="auth-page">
+<main class="auth-card">
+	<section class="auth-form">
+		<div class="brand"><span class="brand-mark">S</span>SMS</div>
+
+		<p class="eyebrow">Get started</p>
+		<h1>Create your account</h1>
+		<p class="subtitle">A few details and you're ready to go.</p>
+
+		<div class="alert" role="alert" th:if="${error}" th:text="${error}"></div>
+
+		<form th:action="@{/signup}" th:object="${signupForm}" method="post">
+			<label for="name">Name</label>
+			<input type="text" th:field="*{name}" required maxlength="255" autocomplete="name">
+
+			<label for="email">Email address</label>
+			<input type="email" th:field="*{email}" placeholder="you@example.com" required maxlength="320"
+				   autocomplete="email">
+
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" placeholder="At least 6 characters" required
+				   minlength="6" autocomplete="new-password">
+			<p class="hint">Must be at least 6 characters.</p>
+
+			<button type="submit" class="btn-primary">Create account <span aria-hidden="true">&rarr;</span></button>
+		</form>
+
+		<p class="switch">Already have an account? <a th:href="@{/login}">Log in</a></p>
+	</section>
+
+	<aside class="auth-art" aria-hidden="true">
+		<div class="orb orb-large"></div>
+		<div class="orb orb-small"></div>
+		<svg class="sparkle" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+		<p class="art-eyebrow">A fresh space to grow</p>
+		<h2>Start with an idea. See where it takes you.</h2>
+		<p class="art-caption">Make this space your own.</p>
+	</aside>
+</main>
+</body>
+</html>

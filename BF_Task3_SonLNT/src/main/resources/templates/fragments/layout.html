@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<header class="site-header" th:fragment="nav(active)">
+	<div class="site-header-inner">
+		<a class="sms-brand" th:href="@{/home}"><span class="sms-mark">S</span>SMS</a>
+		<nav class="site-nav" aria-label="Main">
+			<a th:href="@{/home}" th:classappend="${active == 'home'} ? 'active'">Home</a>
+			<a th:href="@{/about}" th:classappend="${active == 'about'} ? 'active'">About</a>
+			<a th:href="@{/profile}" th:classappend="${active == 'profile'} ? 'active'">Profile</a>
+			<a th:href="@{/login-history}" th:classappend="${active == 'history'} ? 'active'">Login history</a>
+			<a th:href="@{/todo}" th:classappend="${active == 'todo'} ? 'active'">ToDo</a>
+			<a th:href="@{/contact}" th:classappend="${active == 'contact'} ? 'active'">Contact</a>
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="btn-pill-dark">Log out</button>
+			</form>
+		</nav>
+	</div>
+</header>
+
+<header class="site-header" th:fragment="back">
+	<div class="site-header-inner">
+		<a class="sms-brand" th:href="@{/home}"><span class="sms-mark">S</span>SMS</a>
+		<a class="btn-pill-outline" th:href="@{/home}">Back to home</a>
+	</div>
+</header>
+
+</body>
+</html>

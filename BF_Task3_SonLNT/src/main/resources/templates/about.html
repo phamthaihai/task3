@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>About · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page">
+<header th:replace="~{fragments/layout :: nav('about')}"></header>
+
+<main class="sms-main">
+	<section class="hero hero-about">
+		<span class="hero-watermark" aria-hidden="true">SMS</span>
+		<p class="hero-eyebrow">Student Management System</p>
+		<h1>Make your time work for you.</h1>
+		<p class="hero-lead">SMS is a student-focused space for thinking intentionally about what you do, how you spend
+			your time, and what you want to make room for.</p>
+	</section>
+
+	<section class="about-why">
+		<div>
+			<p class="kicker">Why SMS</p>
+			<h2 class="display">A little structure can make a big difference.</h2>
+		</div>
+		<div>
+			<p class="about-lead">Student life brings classes, assignments, responsibilities, and personal goals
+				together. When everything competes for attention, it can be hard to know where to begin.</p>
+			<p class="muted-copy">SMS encourages a practical, personal approach: notice what needs your attention, make
+				a realistic plan, and check in with yourself as the day unfolds. The aim is not to fill every minute,
+				but to make thoughtful choices and leave room to rest.</p>
+		</div>
+	</section>
+
+	<section class="about-steps">
+		<p class="kicker">A simple approach</p>
+		<h2 class="display">Plan your day in four steps.</h2>
+		<div class="steps steps-4">
+			<article class="step">
+				<span class="step-num">1</span>
+				<h3>Gather your tasks</h3>
+				<p>Write down classes, deadlines, errands, and anything else you want to remember.</p>
+			</article>
+			<article class="step">
+				<span class="step-num">2</span>
+				<h3>Choose priorities</h3>
+				<p>Pick the most important or time-sensitive items instead of trying to do everything at once.</p>
+			</article>
+			<article class="step">
+				<span class="step-num">3</span>
+				<h3>Make a realistic plan</h3>
+				<p>Set aside time for focused work, breaks, meals, and the commitments you already have.</p>
+			</article>
+			<article class="step">
+				<span class="step-num">4</span>
+				<h3>Review and adjust</h3>
+				<p>At the end of the day, notice what worked and adapt your next plan without judgment.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="principles">
+		<div class="principles-card">
+			<p class="kicker">Our principles</p>
+			<h2 class="display">Your routine should fit your life.</h2>
+			<p class="muted-copy">There is no single perfect schedule. Build habits that support your goals and adapt
+				as your needs change.</p>
+		</div>
+		<dl class="principles-list">
+			<div>
+				<dt>Progress over perfection</dt>
+				<dd>Small, consistent steps count. A plan is a guide, not a test you can fail.</dd>
+			</div>
+			<div>
+				<dt>Balance is part of the plan</dt>
+				<dd>Rest, relationships, and personal interests matter alongside classes and coursework.</dd>
+			</div>
+			<div>
+				<dt>Make it your own</dt>
+				<dd>Try different routines, keep what helps, and change what no longer works for you.</dd>
+			</div>
+		</dl>
+	</section>
+
+	<section class="panel explore">
+		<div>
+			<p class="kicker">Explore the site</p>
+			<h2>Your account essentials, in one place.</h2>
+			<p class="muted-copy">Visit your profile to view your account details and manage your profile photo, or
+				review your recorded sign-in activity in Login history.</p>
+		</div>
+		<div class="explore-actions">
+			<a class="btn-pill-accent" th:href="@{/profile}">View profile</a>
+			<a class="btn-pill-outline" th:href="@{/home}">Back home</a>
+		</div>
+	</section>
+</main>
+</body>
+</html>

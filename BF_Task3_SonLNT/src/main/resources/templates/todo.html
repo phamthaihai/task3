@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ToDo · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page">
+<header th:replace="~{fragments/layout :: nav('todo')}"></header>
+
+<main class="sms-main">
+	<section class="page-head page-head-actions">
+		<div>
+			<p class="kicker">Your time, your priorities</p>
+			<h1 class="page-title">ToDo list</h1>
+			<p class="page-sub" th:text="|${completedCount} of ${#lists.size(todos)} tasks completed|"></p>
+		</div>
+		<a class="btn-pill-outline btn-lg" th:href="@{/todo/export}">Export Excel</a>
+	</section>
+
+	<p class="flash" role="status" th:if="${message}" th:text="${message}"></p>
+
+	<section class="panel">
+		<h2 class="panel-title">Add a task</h2>
+		<div class="alert" role="alert" th:if="${error}" th:text="${error}"></div>
+		<form class="todo-form" th:action="@{/todo}" th:object="${todoForm}" method="post">
+			<div class="todo-field todo-title">
+				<label for="title">What do you need to do?</label>
+				<input type="text" th:field="*{title}" placeholder="e.g. Review lecture notes" required maxlength="200">
+			</div>
+			<div class="todo-field">
+				<label for="dueDate">Due date <span class="optional">(optional)</span></label>
+				<input type="date" th:field="*{dueDate}">
+			</div>
+			<button type="submit" class="btn-pill-accent btn-lg">Add task</button>
+		</form>
+	</section>
+
+	<section class="panel">
+		<h2 class="panel-title">Your tasks</h2>
+		<div class="empty-state" th:if="${#lists.isEmpty(todos)}">
+			<h3>Nothing on your list yet</h3>
+			<p>Add a task above to give your day a clear next step.</p>
+		</div>
+		<ul class="todo-list" th:unless="${#lists.isEmpty(todos)}">
+			<li th:each="todo : ${todos}" th:classappend="${todo.completed} ? 'done'">
+				<form th:action="@{/todo/{id}/toggle(id=${todo.id})}" method="post">
+					<input type="checkbox" th:id="|todo-${todo.id}|" th:checked="${todo.completed}"
+						   onchange="this.form.submit()">
+				</form>
+				<label class="todo-text" th:for="|todo-${todo.id}|">
+					<span class="todo-name" th:text="${todo.title}"></span>
+					<span class="todo-due" th:if="${todo.dueDate}" th:text="|Due ${todo.dueDate}|"></span>
+				</label>
+				<form th:action="@{/todo/{id}/delete(id=${todo.id})}" method="post">
+					<button type="submit" class="btn-pill-small">Delete</button>
+				</form>
+			</li>
+		</ul>
+	</section>
+</main>
+</body>
+</html>

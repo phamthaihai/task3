@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page">
+<header th:replace="~{fragments/layout :: nav('contact')}"></header>
+
+<main class="sms-main">
+	<section class="page-head">
+		<p class="kicker">Get in touch</p>
+		<h1 class="page-title">We&rsquo;d love to hear from you.</h1>
+		<p class="page-sub">Reach out by email or phone, or find us in Hanoi.</p>
+	</section>
+
+	<section class="contact-grid">
+		<div class="panel contact-card">
+			<dl class="contact-list">
+				<dt>Email</dt>
+				<dd><a href="mailto:phamthaihai@gmail.com">phamthaihai@gmail.com</a></dd>
+				<dt>Phone</dt>
+				<dd><a href="tel:+84 90000000">+84 90000000</a></dd>
+				<dt>Address</dt>
+				<dd>Hanoi, Vietnam</dd>
+			</dl>
+			<p class="contact-note">For general questions, email us at
+				<a href="mailto:hello@example.com">hello@example.com</a>.</p>
+		</div>
+		<div class="panel map-card">
+			<iframe title="Map of Hanoi, Vietnam" loading="lazy"
+					src="https://www.openstreetmap.org/export/embed.html?bbox=105.60%2C20.90%2C106.10%2C21.15&amp;layer=mapnik&amp;marker=21.0285%2C105.8542"></iframe>
+		</div>
+	</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page">
+<header th:replace="~{fragments/layout :: nav('home')}"></header>
+
+<main class="sms-main">
+	<section class="hero">
+		<span class="hero-watermark" aria-hidden="true">SMS</span>
+		<p class="hero-eyebrow">A place to make it yours</p>
+		<h1 th:text="|Welcome, ${user.name}.|">Welcome.</h1>
+		<p class="hero-lead">A fresh space for your next chapter.</p>
+	</section>
+
+	<section class="panel intro-panel">
+		<p class="kicker">Student Management System</p>
+		<div class="intro-grid">
+			<h2 class="display">Your time. Your goals. Your way.</h2>
+			<p class="intro-copy">SMS (Student Management System) is designed to help students take charge of their own
+				time. Think about what you need to do, decide how to spend your day, and make space for study,
+				activities, and rest.</p>
+		</div>
+		<div class="steps steps-3">
+			<article class="step">
+				<span class="step-num">1</span>
+				<h3>Choose what matters</h3>
+				<p>Start with your priorities and the things you want to get done.</p>
+			</article>
+			<article class="step">
+				<span class="step-num">2</span>
+				<h3>Shape your day</h3>
+				<p>Make a plan that fits your classes, commitments, and personal time.</p>
+			</article>
+			<article class="step">
+				<span class="step-num">3</span>
+				<h3>Keep a healthy balance</h3>
+				<p>Reflect on how you spend your time and adjust your routine as you go.</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="link-columns">
+		<div class="link-column">
+			<p class="kicker">Your profile</p>
+			<h2>Keep your details close.</h2>
+			<p>See your account information and update your profile photo in one place.</p>
+			<a class="text-link" th:href="@{/profile}">Go to profile <span aria-hidden="true">&rarr;</span></a>
+		</div>
+		<div class="link-column">
+			<p class="kicker">Your activity</p>
+			<h2>A clear record.</h2>
+			<p>Review recent sign-in attempts and export your activity when you need it.</p>
+			<a class="text-link" th:href="@{/login-history}">View login history <span aria-hidden="true">&rarr;</span></a>
+		</div>
+	</section>
+</main>
+</body>
+</html>

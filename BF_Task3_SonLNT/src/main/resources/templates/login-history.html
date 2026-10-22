@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login history · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page history-page">
+<header th:replace="~{fragments/layout :: back}"></header>
+
+<main class="sms-main">
+	<section class="page-head page-head-actions">
+		<div>
+			<p class="history-eyebrow">Account activity</p>
+			<h1 class="history-title">Login history</h1>
+			<p class="history-sub">
+				<span th:text="|${#lists.size(entries)} recorded attempts|"></span>
+				<span class="divider" aria-hidden="true">|</span>
+				<span th:text="|${successCount} successful|"></span>
+			</p>
+		</div>
+		<a class="btn-export" th:href="@{/login-history/export}">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 17v3h16v-3"/></svg>
+			Export Excel
+		</a>
+	</section>
+
+	<div class="history-table-wrap">
+		<table class="history-table">
+			<thead>
+			<tr>
+				<th>User</th>
+				<th>Email</th>
+				<th>Login time</th>
+				<th>Result</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:if="${#lists.isEmpty(entries)}">
+				<td colspan="4" class="empty">No login attempts recorded yet.</td>
+			</tr>
+			<tr th:each="entry : ${entries}">
+				<td class="cell-user" th:text="${user.name}"></td>
+				<td th:text="${user.email}"></td>
+				<td th:text="${entry.loginTime.format(timeFormat)}"></td>
+				<td>
+					<span class="badge" th:classappend="${entry.successful} ? 'badge-ok' : 'badge-fail'"
+						  th:text="${entry.successful} ? 'Success' : 'Failed'"></span>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</main>
+</body>
+</html>
