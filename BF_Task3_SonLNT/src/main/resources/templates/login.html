@@ -55,13 +55,17 @@
 	<div class="modal" role="dialog" aria-modal="true" aria-labelledby="login-success-title">
 		<div class="modal-icon" aria-hidden="true">&#10003;</div>
 		<h2 id="login-success-title">Login successful</h2>
-		<p>You&rsquo;re signed in. Continue to your home page.</p>
-		<a class="btn-primary" id="login-continue" th:href="@{/home}">Continue to home</a>
+		<p>You&rsquo;re signed in. Taking you to upcoming events&hellip;</p>
+		<a class="btn-primary" id="login-continue" th:href="@{/event}">Continue to events</a>
 	</div>
 </div>
 
 <script th:if="${loggedIn}">
-	document.getElementById('login-continue').focus();
+	const loginContinue = document.getElementById('login-continue');
+	loginContinue.focus();
+	setTimeout(function () {
+		window.location.href = loginContinue.href;
+	}, 1500);
 </script>
 
 <script th:if="${registered}">

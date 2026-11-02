@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Events · SMS</title>
+	<link rel="stylesheet" th:href="@{/css/app.css}">
+	<link rel="stylesheet" th:href="@{/css/sms.css}">
+</head>
+<body class="sms-page">
+<header th:replace="~{fragments/layout :: nav('event')}"></header>
+
+<main class="sms-main">
+	<h1 class="event-heading"><span aria-hidden="true">&#127881;</span> Upcoming Online Events</h1>
+
+	<div class="empty-state" th:if="${#lists.isEmpty(events)}">
+		<h3>No upcoming events</h3>
+		<p>Check back later for new online events.</p>
+	</div>
+
+	<section class="event-grid" th:unless="${#lists.isEmpty(events)}">
+		<article class="event-card" th:each="event, stat : ${events}">
+			<div class="event-image">
+				<img th:src="${event.imageUrl}" th:alt="|Event ${stat.count}|" loading="lazy"
+					 onerror="this.remove()">
+			</div>
+			<div class="event-body">
+				<h2 class="event-title" th:text="${event.title}">Event</h2>
+				<p><strong>Date:</strong> <span th:text="${event.dateLabel}"></span></p>
+				<p><strong>Time:</strong> <span th:text="${event.timeLabel}"></span></p>
+				<p><strong>Venue:</strong> <span th:text="${event.venue}"></span></p>
+				<button type="button" class="btn-checkin"
+						th:data-event-id="${event.id}"
+						th:data-title="${event.title}"
+						th:data-date="${event.dateLabel}"
+						th:data-time="${event.timeLabel}"
+						th:data-venue="${event.venue}">Check In</button>
+			</div>
+		</article>
+	</section>
+</main>
+
+<div class="qr-backdrop" id="qr-modal" hidden>
+	<div class="qr-modal" role="dialog" aria-modal="true" aria-labelledby="qr-title">
+		<h2 id="qr-title">Event Check-In</h2>
+		<p class="qr-event" id="qr-event"></p>
+		<p class="qr-when" id="qr-when"></p>
+		<div class="qr-code" id="qr-code"></div>
+		<button type="button" class="btn-close" id="qr-close">Close</button>
+	</div>
+</div>
+
+<script th:src="@{/js/qrcode.js}"></script>
+<script th:inline="javascript">
+	(function () {
+		const attendee = { id: /*[[${user.id}]]*/ 0, name: /*[[${user.name}]]*/ '', email: /*[[${user.email}]]*/ '' };
+		const modal = document.getElementById('qr-modal');
+		const closeButton = document.getElementById('qr-close');
+		let opener = null;
+
+		qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8'];
+
+		function checkInPayload(data) {
+			return [
+				'EVENT CHECK-IN',
+				'Code: EVT-' + data.eventId + '-U' + attendee.id,
+				'Event: ' + data.title,
+				'Date: ' + data.date,
+				'Time: ' + data.time,
+				'Venue: ' + data.venue,
+				'Attendee: ' + attendee.name + ' <' + attendee.email + '>'
+			].join('\n');
+		}
+
+		function openModal(button) {
+			const data = button.dataset;
+			const qr = qrcode(0, 'M');
+			qr.addData(checkInPayload(data), 'Byte');
+			qr.make();
+
+			document.getElementById('qr-event').textContent = data.title;
+			document.getElementById('qr-when').textContent = data.date + ' \u2022 ' + data.time;
+			document.getElementById('qr-code').innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+
+			opener = button;
+			modal.hidden = false;
+			closeButton.focus();
+		}
+
+		function closeModal() {
+			modal.hidden = true;
+			if (opener) {
+				opener.focus();
+			}
+		}
+
+		document.querySelectorAll('.btn-checkin').forEach(function (button) {
+			button.addEventListener('click', function () { openModal(button); });
+		});
+		closeButton.addEventListener('click', closeModal);
+		modal.addEventListener('click', function (e) {
+			if (e.target === modal) {
+				closeModal();
+			}
+		});
+		document.addEventListener('keydown', function (e) {
+			if (e.key === 'Escape' && !modal.hidden) {
+				closeModal();
+			}
+		});
+	})();
+</script>
+</body>
+</html>

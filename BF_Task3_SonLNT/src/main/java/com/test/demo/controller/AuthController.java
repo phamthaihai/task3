@@ -33,7 +33,7 @@ public class AuthController {
 
 	@GetMapping("/")
 	public String index(HttpSession session) {
-		return session.getAttribute(SESSION_USER_ID) != null ? "redirect:/home" : "redirect:/login";
+		return session.getAttribute(SESSION_USER_ID) != null ? "redirect:/event" : "redirect:/login";
 	}
 
 	@GetMapping("/signup")
@@ -65,7 +65,7 @@ public class AuthController {
 	@GetMapping("/login")
 	public String loginPage(@ModelAttribute LoginForm loginForm, Model model, HttpSession session) {
 		if (session.getAttribute(SESSION_USER_ID) != null && model.getAttribute("loggedIn") == null) {
-			return "redirect:/home";
+			return "redirect:/event";
 		}
 		if (model.getAttribute("email") instanceof String email) {
 			loginForm.setEmail(email);

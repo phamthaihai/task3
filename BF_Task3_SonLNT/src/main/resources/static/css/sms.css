@@ -1084,3 +1084,139 @@
 		padding: 20px;
 	}
 }
+
+/* Events */
+
+.event-heading {
+	margin: 8px 0 28px;
+	font: 700 30px var(--sms-sans);
+	text-align: center;
+}
+
+.event-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 20px;
+}
+
+.event-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid #dee2e6;
+	border-radius: 6px;
+	background: #fff;
+	font-family: var(--sms-sans);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.event-image {
+	aspect-ratio: 2 / 1;
+	background: linear-gradient(135deg, #dbe4f3, #eef1f6);
+}
+
+.event-image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.event-body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 4px;
+	padding: 14px 12px 12px;
+	font-size: 14px;
+}
+
+.event-title {
+	margin-bottom: 6px;
+	font: 400 18px var(--sms-sans);
+}
+
+.btn-checkin,
+.btn-close {
+	width: 100%;
+	height: 36px;
+	border: 0;
+	border-radius: 4px;
+	color: #fff;
+	font: 400 15px var(--sms-sans);
+	cursor: pointer;
+}
+
+.btn-checkin {
+	margin-top: auto;
+	background: #0d6efd;
+}
+
+.event-body p:last-of-type {
+	margin-bottom: 14px;
+}
+
+.btn-checkin:hover {
+	background: #0b5ed7;
+}
+
+.btn-close {
+	background: #6c757d;
+}
+
+.btn-close:hover {
+	background: #5c636a;
+}
+
+:is(.btn-checkin, .btn-close):focus-visible {
+	outline: 3px solid rgba(13, 110, 253, 0.35);
+	outline-offset: 2px;
+}
+
+.qr-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: 10;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.qr-backdrop[hidden] {
+	display: none;
+}
+
+.qr-modal {
+	width: 100%;
+	max-width: 360px;
+	padding: 16px 12px 12px;
+	border-radius: 8px;
+	background: #fff;
+	font-family: var(--sms-sans);
+	text-align: center;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.qr-modal h2 {
+	font-size: 22px;
+}
+
+.qr-event,
+.qr-when {
+	margin-top: 4px !important;
+	color: var(--sms-muted);
+	font-size: 14px;
+}
+
+.qr-code {
+	width: 200px;
+	height: 200px;
+	margin: 18px auto;
+}
+
+.qr-code svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}

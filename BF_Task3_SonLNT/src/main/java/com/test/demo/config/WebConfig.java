@@ -18,7 +18,7 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(currentUserInterceptor)
-				.addPathPatterns("/home", "/about", "/contact", "/profile/**", "/login-history/**", "/todo/**");
+				.addPathPatterns("/home", "/event", "/about", "/contact", "/profile/**", "/login-history/**", "/todo/**");
 	}
 
 }
